@@ -77,6 +77,13 @@ header {
 	padding: 0px 50px;
 }
 
+div[data-theme-toggle=''] {
+	color: var(--text-color);
+	font-size: 14px;
+	font-family: 'Nunito', sans-serif;
+	font-weight: 600;
+}
+
 input[type='text'] {
 	background-color: var(--elements-color);
 	border: transparent;
@@ -128,6 +135,25 @@ h2 {
 
 #country-single {
 	display: none;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.country-single-container {
+	width: 90%;
+}
+
+#btn-back {
+	width: 100px;
+	height: 30px;
+	background-color: var(--elements-color);
+	border-color: transparent;
+	color: var(--text-color);
+	font-family: 'Nunito', sans-serif;
+	font-size: 14px;
+	border-radius: 5px;
+	margin: 60px 0px;
 }
 
 #country-list {
@@ -196,6 +222,8 @@ h2 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	justify-content: space-between;
+	max-width: 1440px;
 }
 
 .country-details {

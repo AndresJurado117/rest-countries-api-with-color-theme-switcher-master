@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    calculateSettingAsThemeString;
     const countriesDiv = document.getElementById('countries');
     const countrySearch = document.getElementById('country_search');
     const regionSelected = document.getElementById('region');
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
     const backButton = document.getElementById('btn-back');
+
+    calculateSettingAsThemeString;
 
     function countries(country) {
         var container = document.createElement('div');
@@ -24,19 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         var countryPopulation = document.createElement('p');
         countryPopulation.innerText = `Population: `;
         var countryPopulationValue = document.createElement('span');
-        countryPopulationValue.innerHTML = country.population.toLocaleString();
+        countryPopulationValue.innerText = country.population.toLocaleString();
         countryPopulation.append(countryPopulationValue);
         countryDescription.appendChild(countryPopulation);
         var countryRegion = document.createElement('p');
         countryRegion.innerText = `Region: `;
         var countryRegionValue = document.createElement('span');
-        countryRegionValue.innerHTML = country.region;
+        countryRegionValue.innerText = country.region;
         countryRegion.append(countryRegionValue);
         countryDescription.appendChild(countryRegion);
         var countryCapital = document.createElement('p');
         countryCapital.innerText = `Capital: `;
         var countryCapitalValue = document.createElement('span');
-        countryCapitalValue.innerHTML = country.capital;
+        if (country.capital) {
+            countryCapitalValue.innerText = country.capital;
+        }
+        else {
+            countryCapitalValue.innerText = "None";
+        }
         countryCapital.append(countryCapitalValue);
         countryDescription.appendChild(countryCapital);
         container.append(countryDescription);
@@ -47,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function filterRegion(region='') {
-        countriesDiv.innerHTML = '';
+        countriesDiv.innerText = '';
         if (region == '') {
             fetch('./data.json')
             .then((response) => response.json())
@@ -73,12 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     countrySearch.addEventListener('input', () => {
-        countriesDiv.innerHTML = '';
+        countriesDiv.innerText = '';
         fetch('./data.json')
         .then((response) => response.json())
         .then((data) => data.forEach(country => {
             if(country.name.toLowerCase().includes(countrySearch.value.toLowerCase())) {
-                console.log(country);
                 countries(country);
             }
         }));
@@ -101,20 +105,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById("country-population").innerText = countryData.population.toLocaleString();
                 document.getElementById("country-region").innerText = countryData.region;
                 document.getElementById("country-sub-region").innerText = countryData.subregion;
-                document.getElementById("country-capital").innerText = countryData.capital;
+                var countryCapital = document.getElementById("country-capital");
+                if (countryData.capital) {
+                    countryCapital.innerText = countryData.capital;
+                }
+                else {
+                    countryCapital.innerText = "None";
+                }
                 document.getElementById("country-top-level-domain").innerText = countryData.topLevelDomain;
-                document.getElementById("country-currencies").innerText = countryData.currencies;
-                document.getElementById("country-languages").innerText = countryData.languages;
-                document.getElementById("country-borders").innerText = countryData.borders;
+                var countryCurrencies = document.getElementById("country-currencies");
+                if (countryData.currencies) {
+                    countryCurrencies.innerText = "";
+                    countryData.currencies.forEach(currency => {
+                        countryCurrencies.innerText += currency.name;
+                    })
+                }
+                else {
+                    countryCurrencies.innerText = 'None';
+                }
+                var countryLanguages = document.getElementById("country-languages");
+                countryLanguages.innerText = "";
+                countryData.languages.forEach(language => {
+                    countryLanguages.innerText += `${language.name}, `;
+                })
+                countryLanguages.innerText = countryLanguages.innerText.slice(0, -2);
+                var countryBorders = document.getElementById("country-borders");
+                if (countryData.borders) {
+                    countryBorders.innerText = countryData.borders;
+                }
+                else {
+                    countryBorders.innerText = "None";
+                }
                 document.getElementById("country-list").style.display = "none";
-                document.getElementById("country-single").style.display = "grid";
+                document.getElementById("country-single").style.display = "flex";
             }
             else {
                 console.log(`Country ${countryName} not found`);
             }
         })
         .catch( error => {
-            console.error('The was a problem fetching the data, error code:', error)
+            console.error('The was a problem fetching the data.', error)
         })
     }
 
