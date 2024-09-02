@@ -1,29 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countries</title>
     <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    </noscript>
 </head>
 <body>
     <header>
         <h1>Where in the world?</h1>
-        <div>Dark Mode</div>
+        <div data-theme-toggle aria-label="Change to light theme">
+            <p>Dark Mode</p>
+        </div>
     </header>
     <section>
-        <div>
-            <input type="text" name="country" placeholder="Search for a country..."></input>
-            <select id="region">
-                <option value="" disabled selected>Filter by Region</option>
-                <option>Africa</option>
-                <option>Americas</option>
-                <option>Asia</option>
-                <option>Europe</option>
-                <option>Oceania</option>
-            </select>
+        <div id="country-single">
+            <button id="btn-back">Back</button>
+            <div class="country-information">
+                <div class="image-container-country">
+                    <img src="https://flagcdn.com/af.svg" id="country-flag">
+                </div>
+                <div class="country-details">
+                    <h2 id="country-name">Belgium</h2>
+                    <div class="country-left-details">
+                        <p>Native Name: <span id="country-native-name">Belgie</span></p>
+                        <p>Population: <span id="country-population">4782</span></p>
+                        <p>Region: <span id="country-region">Europe</span></p>
+                        <p>Sub Region: <span id="country-sub-region">Western Europe</span></p>
+                        <p>Capital: <span id="country-capital">Brussels</span></p>
+                    </div>
+                    <div class="country-right-details">
+                        <p>Top Level Domain: <span id="country-top-level-domain">.be</span></p>
+                        <p>Currencies: <span id="country-currencies">Euro</span></p>
+                        <p>Languages: <span id="country-languages">Dutch, French, German</span></p>
+                    </div>
+                    <div class="border-countries">
+                        <p>Border Countries: <span id="country-borders"></span></p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="countries">
+        <div id="country-list">
+            <section class="search-filter-bar">
+                <input type="text" name="country" id="country_search" placeholder="Search for a country..."></input>
+                <select id="region">
+                    <option value="" selected>Filter by Region</option>
+                    <option>Africa</option>
+                    <option>Americas</option>
+                    <option>Asia</option>
+                    <option>Europe</option>
+                    <option>Oceania</option>
+                </select>
+            </section>
+            <section id="countries">
+                <div class="container">
+                    <img src="https://flagcdn.com/w320/af.png">
+                    <div class="country-description">
+                        <h2>Country Name</h2>
+                        <p>Population:</p>
+                        <p>Region:</p>
+                        <p>Capital:</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 </body>
