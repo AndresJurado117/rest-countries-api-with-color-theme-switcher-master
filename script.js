@@ -217,7 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
 
+      // Load theme based on localStorage value
+      document.querySelector("html").setAttribute("data-theme", currentThemeSetting);
+
       const button = document.querySelector("[data-theme-toggle]");
+
+      button.innerText = currentThemeSetting === "dark" ? "Dark Mode" : "Light Mode";
 
       button.addEventListener("click", () => {
         const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
@@ -239,5 +244,4 @@ document.addEventListener('DOMContentLoaded', () => {
         // update the currentThemeSetting in memory
         currentThemeSetting = newTheme;
       });
-      
 })
