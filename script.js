@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     countryCapital.innerText = countryData.capital;
                 }
                 else {
-                    countryCapital.innerText = "None";
+                    countryCapital.innerText = "This country doesn't have a capital.";
                 }
 
                 document.getElementById("country-top-level-domain").innerText = countryData.topLevelDomain;
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 else {
                     var noneText = document.createElement('span');
-                    noneText.innerText = 'None';
+                    noneText.innerText = "This country doesn't have a curency, weird?";
                     countryCurrencies.append(noneText);
                 }
                 
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     countryBorders.innerHTML = '';
                     var noneP = document.createElement('p');
                     var noneSpan = document.createElement('span');
-                    noneSpan.innerText = 'None';
+                    noneSpan.innerText = "This country doesn't have bordering countries.";
                     noneP.append(noneSpan)
                     countryBorders.append(noneP);
                 }
