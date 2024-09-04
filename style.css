@@ -86,6 +86,20 @@ div[data-theme-toggle=''] {
 	font-size: 15px;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 600;
+	cursor: pointer;
+	position: relative;
+	width: 80px;
+	margin-left: 36px;
+	padding: 20px 0px;
+}
+
+div[data-theme-toggle=''] svg {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	left: -34px;
+	top: 15px;
+	fill: var(--text-color);
 }
 
 .main {
@@ -96,9 +110,9 @@ input[type='text'] {
 	background-color: var(--elements-color);
 	border: transparent;
 	border-radius: 5px;
-	width: 250px;
+	width: 480px;
 	height: 50px;
-	padding: 0px 25px;
+	padding-left: 65px;
 }
 
 input[type='text'], input[type='text']::placeholder, select {
@@ -174,7 +188,6 @@ button {
 	font-family: 'Nunito', sans-serif;
 	font-size: 14px;
 	border-radius: 5px;
-	transition: background-color 500ms, color 250ms;
 }
 
 button:hover {
@@ -184,18 +197,20 @@ button:hover {
 }
 
 #btn-back {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	position: relative;
 	width: 100px;
 	height: 30px;
 	margin: 60px 0px;
 	align-self: first baseline;
 }
 
-#btn-back img {
-	width: 25px;
-	color: wheat;
+#btn-back svg {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	left: 10px;
+	top: 5px;
+	fill: var(--text-color);
 }
 
 #country-list {
@@ -206,10 +221,20 @@ button:hover {
 }
 
 #search-filter-bar {
+	position: relative;
 	margin: 50px 0px;
 	display: flex;
 	justify-content: space-between;
 	width: 90%;
+}
+
+#search-filter-bar svg {
+	position: absolute;
+	width: 19px;
+	height: 19px;
+	top: 15px;
+	left: 25px;
+	fill: var(--text-color);
 }
 
 #country-search {
@@ -218,7 +243,7 @@ button:hover {
 
 #countries {
     display: grid;
-	grid-template-columns: repeat(auto-fit, 250px);
+	grid-template-columns: repeat(auto-fill, 250px);
 	gap: 70px;
 	justify-content: space-between;
 	width: 90%;

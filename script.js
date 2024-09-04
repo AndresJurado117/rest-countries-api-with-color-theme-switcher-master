@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var countryImage = document.createElement('img');
         countryImage.src = country.flag;
+        countryImage.setAttribute('alt', `${country.name}'s flag`)
+
         countryImageContainer.appendChild(countryImage);
         countryImageContainer.classList.add('image-container');
         container.appendChild(countryImageContainer);
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (countryData) {
                 document.getElementById("country-flag").src = countryData.flag;
+                document.getElementById("country-flag").setAttribute('alt', `${countryData.name}'s flag`);
                 document.getElementById("country-name").innerText = countryData.name;
                 document.getElementById("country-native-name").innerText = countryData.nativeName;
                 document.getElementById("country-population").innerText = countryData.population.toLocaleString();
@@ -222,14 +225,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const button = document.querySelector("[data-theme-toggle]");
 
-      button.innerText = currentThemeSetting === "dark" ? "Dark Mode" : "Light Mode";
+      button.querySelector('div').innerText = currentThemeSetting === "dark" ? "Dark Mode" : "Light Mode";
 
       button.addEventListener("click", () => {
         const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
       
         // update the button text
         const newCta = newTheme === "dark" ? "Dark Mode" : "Light Mode";
-        button.innerText = newCta;  
+        button.querySelector('div').innerText = newCta;  
       
         // use an aria-label if you are omitting text on the button
         // and using sun/moon icons, for example

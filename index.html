@@ -17,12 +17,22 @@
     <header>
         <h1>Where in the world?</h1>
         <div data-theme-toggle aria-label="Change to light theme">
-            Dark Mode
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"/>
+            </svg>
+            <div>
+                Dark Mode
+            </div>
         </div>
     </header>
     <div class="main">
         <div id="search-filter-bar">
-            <input type="text" class="drop-shadow" name="country" id="country-search" placeholder="Search for a country..."></input>
+            <div>
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M31.707 30.282l-9.717-9.776c1.811-2.169 2.902-4.96 2.902-8.007 0-6.904-5.596-12.5-12.5-12.5s-12.5 5.596-12.5 12.5 5.596 12.5 12.5 12.5c3.136 0 6.002-1.158 8.197-3.067l9.703 9.764c0.39 0.39 1.024 0.39 1.415 0s0.39-1.023 0-1.415zM12.393 23.016c-5.808 0-10.517-4.709-10.517-10.517s4.708-10.517 10.517-10.517c5.808 0 10.516 4.708 10.516 10.517s-4.709 10.517-10.517 10.517z"></path>
+                </svg>
+                <input type="text" class="drop-shadow" name="country" id="country-search" placeholder="Search for a country..."></input>
+            </div>
             <select id="region" name="search-region" class="drop-shadow">
                 <option value="" selected>Filter by Region</option>
                 <option>Africa</option>
@@ -34,7 +44,17 @@
         </div>
         <div id="country-single">
             <div class="country-single-container">
-                <button id="btn-back" class="drop-shadow">Back</button>
+                <button id="btn-back" class="drop-shadow">
+                    <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <g data-name="Layer 2">
+                            <g data-name="arrow-back">
+                                <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"/>
+                                <path d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    Back
+                </button>
             <div class="country-information">
                 <div class="image-container-country">
                     <img src="https://flagcdn.com/af.svg" id="country-flag">
@@ -63,15 +83,6 @@
         </div>
         <div id="country-list">
             <div id="countries">
-                <div class="container">
-                    <img src="https://flagcdn.com/w320/af.png">
-                    <div class="country-description">
-                        <h2>Country Name</h2>
-                        <p>Population:</p>
-                        <p>Region:</p>
-                        <p>Capital:</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
