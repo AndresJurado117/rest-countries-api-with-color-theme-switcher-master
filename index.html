@@ -20,10 +20,21 @@
             Dark Mode
         </div>
     </header>
-    <section>
+    <div class="main">
+        <div id="search-filter-bar">
+            <input type="text" class="drop-shadow" name="country" id="country-search" placeholder="Search for a country..."></input>
+            <select id="region" name="search-region" class="drop-shadow">
+                <option value="" selected>Filter by Region</option>
+                <option>Africa</option>
+                <option>Americas</option>
+                <option>Asia</option>
+                <option>Europe</option>
+                <option>Oceania</option>
+            </select>
+        </div>
         <div id="country-single">
             <div class="country-single-container">
-                <button id="btn-back">Back</button>
+                <button id="btn-back" class="drop-shadow">Back</button>
             <div class="country-information">
                 <div class="image-container-country">
                     <img src="https://flagcdn.com/af.svg" id="country-flag">
@@ -43,25 +54,15 @@
                         <p>Languages: <span id="country-languages">Dutch, French, German</span></p>
                     </div>
                     <div class="border-countries">
-                        <p>Border Countries: <span id="country-borders"></span></p>
+                        <div><p>Border Countries:</p></div>
+                        <div id="country-borders"></div>
                     </div>
                 </div>
             </div>
             </div>
         </div>
         <div id="country-list">
-            <section class="search-filter-bar">
-                <input type="text" name="country" id="country_search" placeholder="Search for a country..."></input>
-                <select id="region">
-                    <option value="" selected>Filter by Region</option>
-                    <option>Africa</option>
-                    <option>Americas</option>
-                    <option>Asia</option>
-                    <option>Europe</option>
-                    <option>Oceania</option>
-                </select>
-            </section>
-            <section id="countries">
+            <div id="countries">
                 <div class="container">
                     <img src="https://flagcdn.com/w320/af.png">
                     <div class="country-description">
@@ -71,8 +72,8 @@
                         <p>Capital:</p>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
-    </section>
+    </div>
 </body>
 </html>
