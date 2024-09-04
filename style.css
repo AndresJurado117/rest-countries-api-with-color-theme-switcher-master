@@ -196,6 +196,10 @@ button:hover {
 	color: var(--inverted-text-color);
 }
 
+button:hover svg {
+	fill: var(--inverted-text-color) !important;
+}
+
 #btn-back {
 	position: relative;
 	width: 100px;
