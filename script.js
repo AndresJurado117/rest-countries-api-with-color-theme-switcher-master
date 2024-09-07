@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let countryImage = document.createElement('img');
         countryImage.src = country.flag;
-        countryImage.setAttribute('alt', `${country.name}'s flag`)
+        countryImage.setAttribute('alt', `${country.name}'s flag`);
 
         countryImageContainer.appendChild(countryImage);
         countryImageContainer.classList.add('image-container');
