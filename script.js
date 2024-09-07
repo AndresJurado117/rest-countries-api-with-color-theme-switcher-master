@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('./data.json')
         .then((response) => response.json())
         .then((data) => data.forEach(country => {
-            if(country.name.toLowerCase().includes(countrySearch.value.toLowerCase())) {
+            if(country.name.toLowerCase().includes(countrySearch.value.toLowerCase()) && country.region == regionSelected[regionSelected.selectedIndex].value) {
                 countries(country);
             }
         }));
