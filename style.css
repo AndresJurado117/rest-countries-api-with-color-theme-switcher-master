@@ -374,6 +374,17 @@ button:hover svg {
 	}
 }
 
+@media (max-width: 780px) {
+	#search-filter-bar {
+		flex-direction: column;
+	}
+
+	#country-search {
+		width: 100%;
+		margin-bottom: 35px;
+	}
+}
+
 @media (max-width: 740px) {
 	.country-single-container {
 		width: 85%;
@@ -419,15 +430,6 @@ button:hover svg {
 
 	div[data-theme-toggle=''] {
 		font-size: 15px;
-	}
-
-	#search-filter-bar {
-		flex-direction: column;
-	}
-
-	#country-search {
-		width: 100%;
-		margin-bottom: 35px;
 	}
 
 	#countries {
