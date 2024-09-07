@@ -1,20 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const countriesDiv = document.getElementById('countries');
-    const countrySearch = document.getElementById('country-search');
+    let countrySearch = document.getElementById('country-search');
     const regionSelected = document.getElementById('region');
     const backButton = document.getElementById('btn-back');
 
     calculateSettingAsThemeString;
+    loadCountries();
 
     function countries(country) {
-        var container = document.createElement('div');
+        let container = document.createElement('div');
         container.classList.add('container');
         container.setAttribute('country', country.name)
         container.classList.add('drop-shadow');
 
-        var countryImageContainer = document.createElement('div');
+        let countryImageContainer = document.createElement('div');
 
-        var countryImage = document.createElement('img');
+        let countryImage = document.createElement('img');
         countryImage.src = country.flag;
         countryImage.setAttribute('alt', `${country.name}'s flag`)
 
@@ -22,33 +23,33 @@ document.addEventListener('DOMContentLoaded', () => {
         countryImageContainer.classList.add('image-container');
         container.appendChild(countryImageContainer);
 
-        var countryDescription = document.createElement('div');
+        let countryDescription = document.createElement('div');
         countryDescription.classList.add('country-description');
 
-        var countryName = document.createElement('h2');
+        let countryName = document.createElement('h2');
         countryName.innerText = country.name;
         countryDescription.appendChild(countryName);
 
-        var countryPopulation = document.createElement('p');
+        let countryPopulation = document.createElement('p');
         countryPopulation.innerText = `Population: `;
 
-        var countryPopulationValue = document.createElement('span');
+        let countryPopulationValue = document.createElement('span');
         countryPopulationValue.innerText = country.population.toLocaleString();
         countryPopulation.append(countryPopulationValue);
         countryDescription.appendChild(countryPopulation);
 
-        var countryRegion = document.createElement('p');
+        let countryRegion = document.createElement('p');
         countryRegion.innerText = `Region: `;
 
-        var countryRegionValue = document.createElement('span');
+        let countryRegionValue = document.createElement('span');
         countryRegionValue.innerText = country.region;
         countryRegion.append(countryRegionValue);
         countryDescription.appendChild(countryRegion);
 
-        var countryCapital = document.createElement('p');
+        let countryCapital = document.createElement('p');
         countryCapital.innerText = `Capital: `;
 
-        var countryCapitalValue = document.createElement('span');
+        let countryCapitalValue = document.createElement('span');
 
         if (country.capital) {
             countryCapitalValue.innerText = country.capital;
@@ -69,28 +70,46 @@ document.addEventListener('DOMContentLoaded', () => {
         countriesDiv.append(container);
     }
 
-    function filterRegion(region='') {
+    function loadCountries() {
+        filterRegion();
+    }
+
+    function filterRegion() {
         countriesDiv.innerText = '';
+        let region = regionSelected[regionSelected.selectedIndex].value;
         
-        if (region == '') {
+        if (region == 'WW' && countrySearch.value.length == 0) {
             fetch('./data.json')
             .then((response) => response.json())
             .then((data) => data.forEach(country => {
                 countries(country);
             }));
         }
+        else if (region == 'WW' && countrySearch.value.length > 0) {
+            fetch('./data.json')
+            .then((response) => response.json())
+            .then(data => {
+                const filteredCountries = data.filter(country =>
+                    country.name.toLowerCase().includes(countrySearch.value.toLowerCase())
+                )
+                filteredCountries.forEach(country => {
+                    countries(country);
+                })
+            })
+        }
         else {
             fetch('./data.json')
             .then((response) => response.json())
-            .then((data) => data.forEach(country => {
-                if(country.region == region) {
+            .then(data => {
+                const filteredCountries = data.filter(country =>
+                    country.region == region && country.name.toLowerCase().includes(countrySearch.value.toLowerCase())
+                )
+                filteredCountries.forEach(country => {
                     countries(country);
-                }
-            }));
+                })
+            });
         }
     }
-
-    filterRegion();
 
     regionSelected.onchange = function() {
         filterRegion(this.value);
@@ -98,13 +117,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     countrySearch.addEventListener('input', () => {
         countriesDiv.innerText = '';
+        let region = regionSelected[regionSelected.selectedIndex].value;
         fetch('./data.json')
         .then((response) => response.json())
-        .then((data) => data.forEach(country => {
-            if(country.name.toLowerCase().includes(countrySearch.value.toLowerCase()) && country.region == regionSelected[regionSelected.selectedIndex].value) {
-                countries(country);
+        .then(data => {
+            if (region == "WW") {
+                const filteredCountries = data.filter(country =>
+                    country.name.toLowerCase().includes(countrySearch.value.toLowerCase())
+                )
+                filteredCountries.forEach(country => {
+                    countries(country);
+                })
             }
-        }));
+            else {
+                const filteredCountries = data.filter(country =>
+                    country.region == region && country.name.toLowerCase().includes(countrySearch.value.toLowerCase())
+                )
+                filteredCountries.forEach(country => {
+                    countries(country);
+                })
+            }
+        })
     });
 
     backButton.addEventListener('click', () => {
@@ -117,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('./data.json')
         .then((response) => response.json()).
         then((data) => {
-            var countryData = data.find(country => country.name === countryName);
+            let countryData = data.find(country => country.name === countryName);
 
             if (countryData) {
                 document.getElementById("country-flag").src = countryData.flag;
@@ -128,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById("country-region").innerText = countryData.region;
                 document.getElementById("country-sub-region").innerText = countryData.subregion;
 
-                var countryCapital = document.getElementById("country-capital");
+                let countryCapital = document.getElementById("country-capital");
 
                 if (countryData.capital) {
                     countryCapital.innerText = countryData.capital;
@@ -139,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.getElementById("country-top-level-domain").innerText = countryData.topLevelDomain;
                 
-                var countryCurrencies = document.getElementById("country-currencies");
+                let countryCurrencies = document.getElementById("country-currencies");
                 
                 if (countryData.currencies) {
                     countryCurrencies.innerText = "";
@@ -148,12 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     })
                 }
                 else {
-                    var noneText = document.createElement('span');
+                    let noneText = document.createElement('span');
                     noneText.innerText = "This country doesn't have a curency, weird?";
                     countryCurrencies.append(noneText);
                 }
                 
-                var countryLanguages = document.getElementById("country-languages");
+                let countryLanguages = document.getElementById("country-languages");
                 countryLanguages.innerText = "";
 
                 countryData.languages.forEach(language => {
@@ -161,14 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 countryLanguages.innerText = countryLanguages.innerText.slice(0, -2);
                 
-                var countryBorders = document.getElementById("country-borders");
+                let countryBorders = document.getElementById("country-borders");
                 
                 if (countryData.borders) {
                     countryBorders.innerText = '';
                     countryData.borders.forEach(border => {
-                        var countryBorderButton = document.createElement('button');
+                        let countryBorderButton = document.createElement('button');
                         countryBorderButton.classList.add('drop-shadow');
-                        var borderData = data.find(country => country.alpha3Code === border);
+                        let borderData = data.find(country => country.alpha3Code === border);
                         countryBorderButton.innerText = borderData.name;
                         countryBorders.append(countryBorderButton);
 
@@ -179,8 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 else {
                     countryBorders.innerHTML = '';
-                    var noneP = document.createElement('p');
-                    var noneSpan = document.createElement('span');
+                    let noneP = document.createElement('p');
+                    let noneSpan = document.createElement('span');
                     noneSpan.innerText = "This country doesn't have bordering countries.";
                     noneP.append(noneSpan)
                     countryBorders.append(noneP);
